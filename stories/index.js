@@ -4,13 +4,14 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 import BarChart from '../src/components/bar-chart'
 import Tooltip from '../src/components/tooltip'
+import Container from '../src/components/container'
 
 const stories = storiesOf('Storybook Knobs', module);
 stories.addDecorator(withKnobs);
 
 stories
   .add('BarChart', () => (
-    <BarChart />
+    <BarChart onTooltipFire={console.log} />
   ))
   .add('Tooltip', () => {
     const props = {
@@ -21,5 +22,8 @@ stories
     return (
       <Tooltip {...props}>test</Tooltip>
     )
-  });
+  })
+  .add('Container', () => (
+    <Container />
+  ));
 
