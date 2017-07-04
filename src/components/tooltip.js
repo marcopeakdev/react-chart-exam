@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'glamor'
 
-let rule = css({
+let tooltip = css({
   position: "relative",
   display: "inline-block",
   padding: "0 15px",
@@ -13,6 +13,7 @@ let rule = css({
   textAlign: "center",
   background: "#F6F6F6",
   border: "3px solid #19283C",
+  boxShadow: "2px 1px 8px 0 rgba(0,0,0,0.3)",
   zIndex: 0,
   ":before": {
     content: "' '",
@@ -48,8 +49,11 @@ class Tooltip extends Component {
   }
 
   render() {
+    const { opacity, top, left, children } = this.props;
     return (
-      <div className={`${rule}`}>{this.props.children}</div>
+      <div style={{position: "absolute", opacity, top, left}}>
+        <div className={`${tooltip}`}>{children}</div>
+      </div>
     )
   }
 }

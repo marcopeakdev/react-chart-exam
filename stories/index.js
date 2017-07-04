@@ -1,13 +1,25 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action, linkTo } from '@storybook/react';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
 import BarChart from '../src/components/bar-chart'
 import Tooltip from '../src/components/tooltip'
 
-storiesOf('Welcome', module)
+const stories = storiesOf('Storybook Knobs', module);
+stories.addDecorator(withKnobs);
+
+stories
   .add('BarChart', () => (
     <BarChart />
   ))
-  .add('Tooltip', () => (
-    <Tooltip>test</Tooltip>
-  ));
+  .add('Tooltip', () => {
+    const props = {
+      opacity: number('opacity', 1),
+      top: number('top', 100),
+      left: number('left', 100)
+    }
+    return (
+      <Tooltip {...props}>test</Tooltip>
+    )
+  });
 

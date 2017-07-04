@@ -32,7 +32,18 @@ class BarChart extends Component {
               max: 10,
             },
           }],
-        }
+        },
+        tooltips: {
+          enabled: false,
+          mode: 'nearest',
+          position: 'nearest',
+          intersect: false,
+          custom: function(tooltip) {
+            console.log(this._chart, tooltip)
+            return this._chart;
+            // return tooltip
+          }
+        },
       }
     })
   }
